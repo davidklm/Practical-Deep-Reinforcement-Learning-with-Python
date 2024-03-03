@@ -1,6 +1,5 @@
 import random
-
-import gym
+import gymnasium as gym
 
 seed = 56
 random.seed(seed)
@@ -12,15 +11,14 @@ a_map = {
 
 episodes = 100
 
-env = gym.make('Blackjack-v0')
-env.seed(seed)
+env = gym.make('Blackjack-v1')
 
 reward_sum = [0, 0]
 a_number = [0, 0]
 
 e = 0
 while True:
-    state = env.reset()
+    state, info = env.reset()
     agent_sum = state[0]
     dealer_sum = state[1]
     usable_ace = state[2]
@@ -29,9 +27,9 @@ while True:
         continue
 
     action = random.randint(0, 1)
-    next_state, reward, done, _ = env.step(action)
+    next_state, reward, terminated, truncated, info = env.step(action)
 
-    if done:
+    if terminated or truncated:
         a_number[action] += 1
         reward_sum[action] += reward
         e += 1

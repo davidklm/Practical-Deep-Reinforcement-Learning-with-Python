@@ -1,4 +1,4 @@
-import gym
+import gymnasium as gym
 
 action_map = {
     1: 'Hit',
@@ -7,15 +7,14 @@ action_map = {
 seed = 10
 episodes = 100
 
-env = gym.make('Blackjack-v0')
-env.seed(seed)
+env = gym.make('Blackjack-v1')
 
 wins = 0
 loss = 0
 draws = 0
 
 for e in range(1, episodes + 1):
-    state = env.reset()
+    state, info = env.reset()
     print(f'===== Episode: {e} =====')
     while True:
         agent_sum = state[0]
@@ -28,11 +27,11 @@ for e in range(1, episodes + 1):
             # stand
             action = 0
 
-        next_state, reward, done, _ = env.step(action)
+        next_state, reward, terminated, truncated, info = env.step(action)
         print(f'state: {state} | action: {action_map[action]} '
               f'| reward: {reward} | next state: {next_state}')
 
-        if done:
+        if terminated or truncated:
             if reward > 0:
                 wins += 1
             elif reward < 0:

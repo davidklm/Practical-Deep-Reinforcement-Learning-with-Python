@@ -1,18 +1,17 @@
 import random
 
-import gym
+import gymnasium as gym
 
-from ch5.monte_carlo.policy import q_greedy_policy
-from ch5.monte_carlo.q_monte_carlo import train_q_monte_carlo
-from ch5.utils.plot_q import plot_q
+from policy import q_greedy_policy
+from q_monte_carlo import train_q_monte_carlo
+from plot_q import plot_q
 import numpy as np
 
-env = gym.make('Blackjack-v0')
+env = gym.make('Blackjack-v1')
 
 seed = 0
 random.seed(seed)
 np.random.seed(seed)
-env.seed(seed)
 
 Q = train_q_monte_carlo(env, 50_000, gamma = .5)
 plot_q(Q)

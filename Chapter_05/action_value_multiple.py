@@ -1,7 +1,7 @@
 import random
 import numpy as np
-import gym
-from ch5.monte_carlo.policy import monte_carlo_policy
+import gymnasium as gym
+from policy import monte_carlo_policy
 
 seed = 6
 random.seed(seed)
@@ -13,8 +13,7 @@ a_map = {
 
 episodes = 10
 gamma = 0.8
-env = gym.make('Blackjack-v0')
-env.seed(seed)
+env = gym.make('Blackjack-v1')
 
 for e in range(1, episodes + 1):
     state_history = monte_carlo_policy(env)

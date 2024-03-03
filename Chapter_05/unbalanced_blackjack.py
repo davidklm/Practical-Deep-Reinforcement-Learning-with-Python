@@ -1,9 +1,9 @@
 import random
 import numpy as np
-from ch5.gym.blackjack_hidden_deck_env import BlackjackHiddenDeckEnv
-from ch5.monte_carlo.policy import q_greedy_policy
-from ch5.monte_carlo.q_monte_carlo import train_q_monte_carlo
-from ch5.utils.plot_q import plot_q
+from blackjack_hidden_deck_env import BlackjackHiddenDeckEnv
+from policy import q_greedy_policy
+from q_monte_carlo import train_q_monte_carlo
+from plot_q import plot_q
 
 hidden_deck = {
     1:  10,

@@ -1,9 +1,9 @@
 import random
 
-import gym
+import gymnasium as gym
 import numpy as np
 from collections import defaultdict
-from ch5.monte_carlo.policy import monte_carlo_policy
+from policy import monte_carlo_policy
 
 
 def train_q_monte_carlo(env, train_episodes, gamma = 1):
@@ -33,11 +33,10 @@ def train_q_monte_carlo(env, train_episodes, gamma = 1):
 
 if __name__ == '__main__':
 
-    env = gym.make('Blackjack-v0')
+    env = gym.make('Blackjack-v1')
 
     seed = 0
     random.seed(seed)
-    env.seed(seed)
 
     Q = train_q_monte_carlo(env, 50_000)
 

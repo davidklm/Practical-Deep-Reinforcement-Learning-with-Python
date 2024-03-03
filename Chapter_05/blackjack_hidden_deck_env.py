@@ -1,6 +1,6 @@
-import gym
-from gym import spaces
-from gym.utils import seeding
+import gymnasium as gym
+from gymnasium import spaces
+from gymnasium.utils import seeding
 
 
 def cmp(a, b):
@@ -87,7 +87,7 @@ class BlackjackHiddenDeckEnv(gym.Env):
             reward = cmp(score(self.player), score(self.dealer))
             if self.natural and is_natural(self.player) and reward == 1.0:
                 reward = 1.5
-        return self._get_obs(), reward, done, {}
+        return self._get_obs(), reward, done, False, {}
 
     def _get_obs(self):
         return (sum_hand(self.player), self.dealer[0], usable_ace(self.player))
@@ -95,4 +95,4 @@ class BlackjackHiddenDeckEnv(gym.Env):
     def reset(self):
         self.dealer = draw_hand(self.np_random)
         self.player = draw_hand(self.np_random)
-        return self._get_obs()
+        return self._get_obs(), {}
