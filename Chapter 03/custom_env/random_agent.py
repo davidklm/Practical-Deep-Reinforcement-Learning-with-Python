@@ -1,6 +1,6 @@
 import random
 from time import sleep
-from ch3.custom_env.catch_coins_env import CatchCoinsEnv
+from catch_coins_env import CatchCoinsEnv
 
 env = CatchCoinsEnv()
 

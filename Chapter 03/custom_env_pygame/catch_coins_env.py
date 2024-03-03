@@ -1,18 +1,19 @@
 from math import ceil
 from random import random, randint
 from time import sleep
-import gym
+import gymnasium as gym
 import collections
+from catch_coins_screen import CatchCoinsScreen
 
 
 class CatchCoinsEnv(gym.Env):
     metadata = {"render.modes": ["human"]}
 
-    def __init__(self, display_width = 10, display_height = 10, density = .8):
+    def __init__(self, display_width=10, display_height=10, density=0.8):
         self.display_width = display_width
         self.display_height = display_height
         self.density = density
-        self.display = collections.deque(maxlen = display_height)
+        self.display = collections.deque(maxlen=display_height)
         self.last_action = None
         self.last_reward = None
         self.total_score = 0
@@ -42,9 +43,9 @@ class CatchCoinsEnv(gym.Env):
         line = [0] * self.display_width
         if random() > (1 - self.density):
             r = random()
-            if r < .6:
+            if r < 0.6:
                 v = 1
-            elif r < .9:
+            elif r < 0.9:
                 v = 2
             else:
                 v = 3
@@ -52,26 +53,20 @@ class CatchCoinsEnv(gym.Env):
             line[randint(0, self.display_width - 1)] = v
         return line
 
-    def render(self, mode = "human"):
+    def render(self, mode="human"):
         if mode == "human":
             self._render_human()
         else:
-            raise Exception('Not Implemented')
+            raise Exception("Not Implemented")
 
     def _render_human(self):
-        from catch_coins_game import CatchCoinsScreen
         if not self.game_scr:
             self.game_scr = CatchCoinsScreen(
-                h = self.display_height,
-                w = self.display_width
+                h=self.display_height, w=self.display_width
             )
 
         if self.last_reward:
             self.game_scr.plus()
-            sleep(.1)
+            sleep(0.1)
 
-        self.game_scr.update(
-            self.display,
-            self.v_position,
-            self.total_score
-        )
+        self.game_scr.update(self.display, self.v_position, self.total_score)

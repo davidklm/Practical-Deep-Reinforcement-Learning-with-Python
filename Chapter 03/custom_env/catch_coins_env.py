@@ -1,6 +1,6 @@
 from math import ceil
 from random import random, randint
-import gym
+import gymnasium as gym
 import sys
 import collections
 
@@ -8,11 +8,11 @@ import collections
 class CatchCoinsEnv(gym.Env):
     metadata = {"render.modes": ["ascii"]}
 
-    def __init__(self, display_width = 10, display_height = 10, density = .8):
+    def __init__(self, display_width=10, display_height=10, density=0.8):
         self.display_width = display_width
         self.display_height = display_height
         self.density = density
-        self.display = collections.deque(maxlen = display_height)
+        self.display = collections.deque(maxlen=display_height)
         self.last_action = None
         self.last_reward = None
         self.total_score = 0
@@ -23,9 +23,9 @@ class CatchCoinsEnv(gym.Env):
         line = [0] * self.display_width
         if random() > (1 - self.density):
             r = random()
-            if r < .6:
+            if r < 0.6:
                 v = 1
-            elif r < .9:
+            elif r < 0.9:
                 v = 2
             else:
                 v = 3
@@ -52,11 +52,11 @@ class CatchCoinsEnv(gym.Env):
         state = self.display, self.v_position
         return state
 
-    def render(self, mode = "ascii"):
+    def render(self, mode="ascii"):
         if mode == "ascii":
             self._render_ascii()
         else:
-            raise Exception('Not Implemented')
+            raise Exception("Not Implemented")
 
     def _render_ascii(self):
         outfile = sys.stdout
@@ -70,16 +70,16 @@ class CatchCoinsEnv(gym.Env):
                 p = line[j]
                 if p > 0:
                     row.append(str(p))
-                    if i > 0 and area[-1][j] == ' ':
-                        area[-1][j] = '|'
-                    if i > 1 and area[-2][j] == ' ':
-                        area[-2][j] = '.'
+                    if i > 0 and area[-1][j] == " ":
+                        area[-1][j] = "|"
+                    if i > 1 and area[-2][j] == " ":
+                        area[-2][j] = "."
                 else:
-                    row.append(' ')
+                    row.append(" ")
             area.append(row)
 
-        pos_line = (['_'] * self.display_width)
-        pos_line[self.v_position] = str(self.last_reward) if self.last_reward else 'V'
+        pos_line = ["_"] * self.display_width
+        pos_line[self.v_position] = str(self.last_reward) if self.last_reward else "V"
 
         area.append(pos_line)
         outfile.write(f"\nTotal score: {self.total_score} \n")

@@ -1,3 +1,3 @@
-import gym
+import gymnasium as gym
 
-env = gym.make('Blackjack-v0')
+env = gym.make('Blackjack-v1')

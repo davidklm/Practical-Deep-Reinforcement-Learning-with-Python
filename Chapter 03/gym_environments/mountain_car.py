@@ -1,7 +1,7 @@
 from time import sleep
-import gym
+import gymnasium as gym
 
-env = gym.make('MountainCar-v0')
+env = gym.make("MountainCar-v0", render_mode="human")
 
 episodes = 10
 
@@ -11,11 +11,11 @@ for i in range(episodes):
     while True:
         env.render()
         random_action = env.action_space.sample()
-        state, reward, done, debug = env.step(random_action)
+        state, reward, terminated, truncated, info = env.step(random_action)
         reward_sum += reward
-        sleep(.01)
-        if done:
-            print(f'Episode {i} reward: {reward_sum}')
+        sleep(0.01)
+        if terminated or truncated:
+            print(f"Episode {i} reward: {reward_sum}")
             sleep(1)
             break
 

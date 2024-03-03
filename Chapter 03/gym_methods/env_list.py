@@ -1,4 +1,4 @@
-from gym import envs
+from gymnasium import envs
 
-for e in envs.registry.all():
-    print(e.id)
+for e in envs.registry:
+    print(e)
