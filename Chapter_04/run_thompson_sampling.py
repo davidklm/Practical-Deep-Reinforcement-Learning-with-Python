@@ -1,6 +1,6 @@
-from ch4.policy.thompson_sampling import thompson_sampling_policy
+from policy.thompson_sampling import thompson_sampling_policy
 import random
-from ch4.gym.multiarmed_bandit_env import get_bandit_env_5
+from gym.multiarmed_bandit_env import get_bandit_env_5
 import matplotlib.pyplot as plt
 import numpy as np
 

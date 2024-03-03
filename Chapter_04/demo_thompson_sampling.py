@@ -1,4 +1,4 @@
-from ch4.policy.thompson_sampling import thompson_sampling_policy
+from policy.thompson_sampling import thompson_sampling_policy
 import random
 import numpy as np
 

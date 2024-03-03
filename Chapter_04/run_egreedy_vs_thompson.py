@@ -2,9 +2,9 @@ import random
 
 import matplotlib.pyplot as plt
 import numpy as np
-from ch4.gym.multiarmed_bandit_env import get_bandit_env_5
-from ch4.run.run_e_greedy_policy import run_e_greedy_policy
-from ch4.run.run_thompson_sampling import run_thompson_sampling
+from gym.multiarmed_bandit_env import get_bandit_env_5
+from run_e_greedy_policy import run_e_greedy_policy
+from run_thompson_sampling import run_thompson_sampling
 
 seed = 0
 random.seed(seed)
